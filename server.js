@@ -10,7 +10,7 @@ require("./mongo")
 //Models
 require("./model/Customer");
 
-const Post = mongoose.model("Post")
+const Customer = mongoose.model("Customer")
 
 //Middleware
 app.use(bodyParser.json()).use(morgan());
