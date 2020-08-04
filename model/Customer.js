@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const post_schema = mongoose.Schema({
+const customer_schema = mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -11,10 +11,9 @@ const post_schema = mongoose.Schema({
     },
     is_active: {
         type: Boolean,
-        required: true,
-        default: false
+        default: true
     }
 })
 
 
-module.exports = mongoose.model("Post", post_schema)
+module.exports = mongoose.model("Customer", customer_schema)

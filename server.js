@@ -8,14 +8,14 @@ const morgan = require("morgan")
 require("./mongo")
 
 //Models
-require("./model/Post");
+require("./model/Customer");
 
 
 //Middleware
 app.use(bodyParser.json("combined")).use(morgan("combined"));
 
 //Routes
-app.use("/customers", require("./routes/posts"))
+app.use("/customers", require("./routes/customers"))
 
 app.listen(3001, function () {
     console.log("Server is running on port 3001");
