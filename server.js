@@ -13,10 +13,10 @@ require("./model/Customer");
 const Customer = mongoose.model("Customer")
 
 //Middleware
-app.use(bodyParser.json()).use(morgan());
+app.use(bodyParser.json("combined")).use(morgan("combined"));
 
 //Routes
-app.use("/customer", require("./routes/customer"))
+app.use("/customers", require("./routes/customers"))
 
 app.listen(3001, function () {
     console.log("Server is running on port 3001");
