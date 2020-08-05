@@ -63,7 +63,7 @@ router.post("/", async (req, res) => {
         const customer = new Customer();
         customer.name = req.body.name;
         customer.url = req.body.url;
-        debugger
+        // task to fix
         if (req.body.is_active) {
             customer.is_active = req.body.is_active;
         } else {

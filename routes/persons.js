@@ -4,11 +4,35 @@ const router = require("express").Router({
 const mongoose = require("mongoose");
 
 const Person = mongoose.model("Person")
+const Customer = mongoose.model("Customer")
 
+// task to fix: if customer is_active is false, Restrict the CRUD operation
 router.get("/", async (req, res) => {
     try {
-        const persons = await Person.find({})
-        res.send(persons)
+        // check if the customer is active
+        // return proper message for inactive customer
+        const customer = await Customer.findOne({
+            _id: req.params.customerId
+        })
+        console.log(customer);
+        if (customer.is_active === true) {
+            // For active customer find all persons
+            // it should not return deleted person
+            //const persons = await Person.find()
+            const persons = await Person.find({
+                "is_deleted": false,
+                "customer_id": customer.id
+            })
+            //console.log("not returning");
+            res.send(persons)
+        } else {
+            res.send({
+                "message": "Customer is not active"
+            });
+        }
+
+
+
     } catch (error) {
         res.status(500)
     }
@@ -71,7 +95,7 @@ router.post("/", async (req, res) => {
         if (req.body.is_deleted) {
             person.is_deleted = req.body.is_deleted;
         } else {
-            person.is_deleted = true;
+            person.is_deleted = false;
         }
         await person.save();
         res.send(person)
