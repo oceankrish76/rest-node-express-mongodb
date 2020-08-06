@@ -31,8 +31,6 @@ router.get("/", async (req, res) => {
             });
         }
 
-
-
     } catch (error) {
         res.status(500)
     }
@@ -43,9 +41,12 @@ router.get("/:personId", async (req, res) => {
         const person = await Person.findOne({
             _id: req.params.personId
         })
-        if (person.is_deleted === true) {
+        const customer = await Customer.findOne({
+            _id: req.params.customerId
+        })
+        if (person.is_deleted === true || customer.is_active === false) {
             res.send({
-                "message": "Person is deleted"
+                "message": "Person is deleted or the customer is Inactive "
             });
         } else {
             res.send(person)
@@ -62,9 +63,18 @@ router.put("/:personId", async (req, res) => {
         }, req.body, {
             new: true,
             runValidators: true
-        });
-
-        res.send(person)
+            });
+        
+        const customer = await Customer.findOne({
+             _id: req.params.customerId
+        })
+        if (customer.is_active === true) {
+            res.send(person)
+        } else {
+            res.send({
+                "message": "Inactive customer cannot update person(s)"
+            })
+        }
 
     } catch (error) {
         res.send(500)
@@ -76,6 +86,7 @@ router.delete("/:personId", async (req, res) => {
         const person = await Person.findByIdAndRemove({
             _id: req.params.personId
         });
+
         res.send(person)
 
     } catch (error) {
@@ -92,17 +103,27 @@ router.post("/", async (req, res) => {
         person.role = req.body.role;
         person.customer_id = req.params.customerId;
         console.log(req.body);
+
+        const customer = await Customer.findOne({
+            _id: req.params.customerId
+        })
+
         if (req.body.is_deleted) {
             person.is_deleted = req.body.is_deleted;
         } else {
             person.is_deleted = false;
         }
         await person.save();
-        res.send(person)
+        if (customer.is_active === true) {
+            res.send(person)
+        } else {
+            res.send({
+                "message": "Inactive customer cannot create person(s)"
+            })
+        }
     } catch (error) {
         res.status(500)
     }
-
 })
 
 module.exports = router;
