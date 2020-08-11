@@ -1,1 +1,30 @@
-<h1>Please Login</h1>
+<link href="/style.css" rel="stylesheet" type="text/css">
+
+<div class="container">
+    <h1>Login</h1>
+    <div class="error-message">
+        <% if (messages.error) { %>
+        <%= messages.error %>
+        <% } %>
+    </div>
+    <form action="/login" method="POST">
+        <div class="row">
+            <div class="col-25">
+                <label for="email">Email</label>
+            </div>
+            <div class="col-75">
+                <input type="email" id="email" name="email" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="password">Password</label>
+            </div>
+            <div class="col-75">
+                <input type="password" id="password" name="password" required>
+            </div>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+    <a href="/register">Register</a>
+</div>
