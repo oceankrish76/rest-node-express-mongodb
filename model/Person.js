@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const person_schema = mongoose.Schema({
     firstname: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     lastname: {
         type: String,

@@ -1,0 +1,45 @@
+{
+	"info": {
+		"_postman_id": "f4c05883-e29f-4368-b614-45b7c443b1a9",
+		"name": "rest-node-express-mongodb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3001/customers/5f2971a2b95dc3147b85c42d",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJyc2w4YXkiLCJleHAiOjE1OTI1OTI2NDksImlhdCI6MTU5MjU5MjQ2OX0.dlp7xAouBBYkTc223lTxSAOm8j7p6glCFIsJSddXpwY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Krishna E\",\n    \"url\": \"localhost/30003\",\n    \"is_active\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/customers/5f2971a2b95dc3147b85c42d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"customers",
+						"5f2971a2b95dc3147b85c42d"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

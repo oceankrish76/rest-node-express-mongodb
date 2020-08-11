@@ -63,10 +63,10 @@ router.put("/:personId", async (req, res) => {
         }, req.body, {
             new: true,
             runValidators: true
-            });
-        
+        });
+
         const customer = await Customer.findOne({
-             _id: req.params.customerId
+            _id: req.params.customerId
         })
         if (customer.is_active === true) {
             res.send(person)
@@ -93,7 +93,6 @@ router.delete("/:personId", async (req, res) => {
         res.send(500)
     }
 })
-
 
 router.post("/", async (req, res) => {
     try {
@@ -125,5 +124,6 @@ router.post("/", async (req, res) => {
         res.status(500)
     }
 })
+
 
 module.exports = router;
