@@ -1,15 +1,26 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
+const express = require("express");
 
 const Customer = mongoose.model("Customer")
 
+const app = express();
+
+app.use(express.static(__dirname + '/public'));
+app.set('views', './views');
+app.set('view engine', 'ejs');
 router.get("/", async (req, res) => {
     try {
         const customers = await Customer.find({})
-        res.send(customers)
+        //res.send(customers)
+        res.render('customer-view.ejs', {
+            all_customers: customers
+        })
+
     } catch (error) {
         res.status(500)
     }
+
 });
 
 router.get("/:customerId", async (req, res) => {

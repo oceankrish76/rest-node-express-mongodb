@@ -1,0 +1,17 @@
+<%# include('../routes/customers.js') -%>
+<link href="/style.css" rel="stylesheet" type="text/css">
+
+<div class="container">
+    <h1>All the customers</h1>
+    <div>
+        <%#= all_customers %>
+    </div>
+    <div>
+        <ul>
+            <% all_customers.forEach(function(value) { %>
+            <li>Name: <%= value.name %>, Active: <%= value.is_active %>, Id: <%= value.id %> , Url: <%= value.url %>
+            </li>
+            <% }) %>
+        </ul>
+    </div>
+</div>

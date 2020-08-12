@@ -11,3 +11,8 @@
 > * jest for integration-test and unit-test
 > * npm run test:watch
 
+<img src="https://i.ibb.co/kXRQPc4/register.png" alt="register" />
+<img src="https://i.ibb.co/wrgDSdb/login.png" alt="login" />
+<img src="https://i.ibb.co/dQP9Thb/customers.png" alt="customers" />
+
+
