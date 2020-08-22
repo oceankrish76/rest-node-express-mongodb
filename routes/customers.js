@@ -11,12 +11,24 @@ app.set('views', './views');
 app.set('view engine', 'ejs');
 router.get("/", async (req, res) => {
     try {
+
         const customers = await Customer.find({})
         //res.send(customers)
-        res.render('customer-view.ejs', {
-            all_customers: customers
-        })
+        res.format({
+            'text/html': function () {
+                res.render('customer-view.ejs', {
+                    all_customers: customers
+                })
+            },
+            'application/json': function () {
+                //res.send(customers)
+                res.header('Access-Control-Allow-Origin', '*');
 
+                res.send({
+                    message: 'hey'
+                });
+            }
+        })
     } catch (error) {
         res.status(500)
     }

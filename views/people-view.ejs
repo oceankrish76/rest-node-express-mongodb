@@ -1,0 +1,19 @@
+<%# include('../routes/persons.js') -%>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<div class="container">
+    <h1>All the persons</h1>
+    <div>
+        <%#= all_persons %>
+    </div>
+    <div>
+        <ul>
+            <% all_persons.forEach(function(value) { %>
+            <li>First Name: <%= value.firstname %>, Id: <%= value.id %>,
+                Last Name: <%= value.lastname %>,
+                Role: <%= value.role %>
+            </li>
+            <% }) %>
+        </ul>
+    </div>
+</div>

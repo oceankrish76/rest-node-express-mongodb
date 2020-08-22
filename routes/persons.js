@@ -1,11 +1,14 @@
-const router = require("express").Router({
-    mergeParams: true
-});
+const router = require("express").Router();
 const mongoose = require("mongoose");
+const express = require("express");
+const app = express();
 
 const Person = mongoose.model("Person")
 const Customer = mongoose.model("Customer")
 
+app.use(express.static(__dirname + '/public'));
+app.set('views', './views');
+app.set('view engine', 'ejs');
 // task to fix: if customer is_active is false, Restrict the CRUD operation
 router.get("/", async (req, res) => {
     try {
@@ -25,6 +28,9 @@ router.get("/", async (req, res) => {
             })
             //console.log("not returning");
             res.send(persons)
+            // res.render('people-view.ejs', {
+            //     all_persons: persons
+            // })
         } else {
             res.send({
                 "message": "Customer is not active"

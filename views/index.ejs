@@ -1,7 +1,12 @@
 <link href="/style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
+<%- include ('./partials/nav') %>
 <div class="container">
     <h1>Hi <%= name %></h1>
+    <div class="customers-nav-div">
+        <a href="/customers/" class="customers-nav-a">Customers</a>
+    </div>
     <form action="/logout?_method=DELETE" method="POST">
         <button type="submit">Log Out</button>
     </form>
