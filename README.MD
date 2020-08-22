@@ -15,10 +15,13 @@
 <img src="https://i.ibb.co/56jSKcr/Screenshot-2020-08-22-at-14-07-38.png" alt="login" />
 <img src="https://i.ibb.co/VDfNtBy/Screenshot-2020-08-22-at-14-07-53.png" alt="customers" />
 <img src="https://i.ibb.co/4RHtBb5/Screenshot-2020-08-22-at-16-56-38.png" alt="customer" />
+<img src="https://i.ibb.co/NCf4D2d/Screenshot-2020-08-22-at-18-51-09.png" alt="Citizens" />
 
 
 #### [Latest Version refer to branch] (https://github.com/oceankrish76/rest-node-express-mongodb/tree/version4)
 
 > Partials added
 > https://stackoverflow.com/questions/41708284/problems-with-ejsdata-foreach-is-not-a-function
-> 
+> res.send. res.render to render view and display differently in UI. 
+> Middleware functions are functions that have access to the request object ( req ), the response object ( res ), and the next function in the application's request-response cycle. The next function is a function in the Express router which, when invoked, executes the middleware succeeding the current middleware.
+>  

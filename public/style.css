@@ -88,3 +88,8 @@ input[type=submit]:hover {
     font-size: 20px;
     color: black;
 }
+
+.customers-persons-li {
+    border-bottom: 1px solid white;
+    color: #4e4e4eeb;
+}

@@ -1,4 +1,7 @@
 const router = require("express").Router();
+const itemRouter = require("express").Router({
+    mergeParams: true
+});
 const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
@@ -10,7 +13,7 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', './views');
 app.set('view engine', 'ejs');
 // task to fix: if customer is_active is false, Restrict the CRUD operation
-router.get("/", async (req, res) => {
+itemRouter.get("/", async (req, res) => {
     try {
         // check if the customer is active
         // return proper message for inactive customer
@@ -27,10 +30,10 @@ router.get("/", async (req, res) => {
                 "customer_id": customer.id
             })
             //console.log("not returning");
-            res.send(persons)
-            // res.render('people-view.ejs', {
-            //     all_persons: persons
-            // })
+            //res.send(persons)
+            res.render('people-view.ejs', {
+                all_persons: persons
+            })
         } else {
             res.send({
                 "message": "Customer is not active"
@@ -42,7 +45,7 @@ router.get("/", async (req, res) => {
     }
 });
 
-router.get("/:personId", async (req, res) => {
+itemRouter.get("/:personId", async (req, res) => {
     try {
         const person = await Person.findOne({
             _id: req.params.personId
@@ -62,7 +65,7 @@ router.get("/:personId", async (req, res) => {
     }
 });
 
-router.put("/:personId", async (req, res) => {
+itemRouter.put("/:personId", async (req, res) => {
     try {
         const person = await Person.findByIdAndUpdate({
             _id: req.params.personId
@@ -87,7 +90,7 @@ router.put("/:personId", async (req, res) => {
     }
 });
 
-router.delete("/:personId", async (req, res) => {
+itemRouter.delete("/:personId", async (req, res) => {
     try {
         const person = await Person.findByIdAndRemove({
             _id: req.params.personId
@@ -100,7 +103,7 @@ router.delete("/:personId", async (req, res) => {
     }
 })
 
-router.post("/", async (req, res) => {
+itemRouter.post("/", async (req, res) => {
     try {
         const person = new Person();
         person.firstname = req.body.firstname;
@@ -132,4 +135,4 @@ router.post("/", async (req, res) => {
 })
 
 
-module.exports = router;
+module.exports = itemRouter;

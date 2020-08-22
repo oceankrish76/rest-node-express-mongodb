@@ -11,7 +11,9 @@
     <div>
         <ul>
             <% all_customers.forEach(function(value) { %>
-            <li>Name: <%= value.name %>, Active: <%= value.is_active %>, Id: <%= value.id %> , Url: <%= value.url %>
+            <li class="customers-persons-li">Name: <%= value.name %>, Active: <%= value.is_active %>, Id:
+                <%= value.id %> , Url:
+                <%= value.url %>
             </li>
             <% }) %>
         </ul>
