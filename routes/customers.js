@@ -45,7 +45,14 @@ router.get("/:customerId", async (req, res) => {
                 "message": "Customer is not active"
             });
         } else {
-            res.send(customer)
+            res.format({
+                'text/html': function () {
+                    //res.send(customer)
+                    res.render('individual-customer.ejs', {
+                        customerdata: [customer]
+                    })
+                }
+            })
         }
     } catch (error) {
         res.status(500);

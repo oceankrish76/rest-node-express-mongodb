@@ -1,0 +1,25 @@
+<%# include('../routes/customers.js') -%>
+<link href="/style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<%- include ('./partials/nav') %>
+<div class="container">
+    <h1>Customer with its Id</h1>
+    <div>
+        <%#= customerdata %>
+    </div>
+    <div>
+        <ul>
+            <% customerdata.forEach(function(value) { %>
+            <li>First Name: <%= value.name %>
+            </li>
+            <li>Is Active: <%= value.is_active %>
+            </li>
+            <li>Id: <%= value.id %>
+            </li>
+            <li>Url: <%= value.url %>
+            </li>
+            <% }) %>
+        </ul>
+    </div>
+</div>
