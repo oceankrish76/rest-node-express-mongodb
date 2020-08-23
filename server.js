@@ -119,7 +119,7 @@ function checkNotAuthenticated(req, res, next) {
 app.use("/customers", require("./routes/customers"))
 
 app.use("/customers/:customerId/persons/", require("./routes/persons"))
-app.listen(port, function () {
+app.listen(process.env.PORT || 3001, function () {
     console.log("Server is running on port 3001");
 })
 // Check all registered routes
