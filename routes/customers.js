@@ -12,7 +12,6 @@ app.set('views', './views');
 app.set('view engine', 'ejs');
 router.get("/", async (req, res) => {
     try {
-
         const customers = await Customer.find({})
         //res.send(customers)
         res.format({
@@ -76,36 +75,24 @@ router.put("/:customerId", async (req, res) => {
     }
 });
 
-router.delete("/:customerId", async (req, res) => {
+router.delete(":customerId", async (req, res) => {
+    console.log("coming", req.params.customerId)
     try {
-        const customer = await Customer.findByIdAndRemove({
+        var customer = await Customer.findByIdAndRemove({
             _id: req.params.customerId
         });
+
+        // if was const canot override
+        customer = customer.map(item => {
+            if (item != req.params.customerId) {
+                return item
+            }
+        })
         res.send(customer)
 
     } catch (error) {
         res.send(500)
     }
-})
-
-
-router.post("/", async (req, res) => {
-    try {
-        const customer = new Customer();
-        customer.name = req.body.name;
-        customer.url = req.body.url;
-        // task to fix
-        if (req.body.is_active) {
-            customer.is_active = req.body.is_active;
-        } else {
-            customer.is_active = true;
-        }
-        await customer.save();
-        res.send(customer)
-    } catch (error) {
-        res.status(500)
-    }
-
 })
 
 module.exports = router;

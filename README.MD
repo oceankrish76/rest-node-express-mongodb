@@ -24,4 +24,5 @@
 > https://stackoverflow.com/questions/41708284/problems-with-ejsdata-foreach-is-not-a-function
 > res.send. res.render to render view and display differently in UI. 
 > Middleware functions are functions that have access to the request object ( req ), the response object ( res ), and the next function in the application's request-response cycle. The next function is a function in the Express router which, when invoked, executes the middleware succeeding the current middleware.
->  
+>  Another name for Models = Collections
+> https://stackoverflow.com/questions/48893686/nodejs-ejs-post

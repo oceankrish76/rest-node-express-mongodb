@@ -3,6 +3,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 const express = require("express");
 const app = express();
+const port = process.env.PORT || 3001;
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser")
 const morgan = require("morgan")
@@ -14,6 +15,8 @@ const session = require('express-session');
 const methodOverride = require('method-override')
 
 const initializePassport = require('./passport-config')
+// const port = process.env.PORT || 5000
+
 // function to find user based on the email
 initializePassport(
     passport,
@@ -25,12 +28,14 @@ const users = []; // not in production level. Use db for that
 //database connection
 require("./mongo")
 
+
 //Models
 require("./model/Customer");
 require("./model/Person");
 
 
 //Middleware
+// parse application/json
 app.use(bodyParser.json("combined")).use(morgan("combined"));
 
 
@@ -39,6 +44,7 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', './views');
 // app.set('view engine', 'pug');
 app.set('view engine', 'ejs');
+// parse application/x-www-form-urlencoded
 app.use(express.urlencoded({
     extended: false
 }))
@@ -111,9 +117,18 @@ function checkNotAuthenticated(req, res, next) {
 /* For User done*/
 // routes
 app.use("/customers", require("./routes/customers"))
+
 app.use("/customers/:customerId/persons/", require("./routes/persons"))
-app.listen(3001, function () {
+app.listen(port, function () {
     console.log("Server is running on port 3001");
 })
+// Check all registered routes
+const routes = [];
+app._router.stack.forEach(middleware => {
+    if (middleware.route) {
+        routes.push(`${Object.keys(middleware.route.methods)} -> ${middleware.route.path}`);
+    }
+});
+console.log(JSON.stringify(routes, null, 2));
 
 module.exports = app;

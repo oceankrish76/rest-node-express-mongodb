@@ -1,21 +1,35 @@
-<%# include('../routes/customers.js') -%>
-<link href="/style.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<!DOCTYPE html>
+<html lang="en">
 
-<%- include ('./partials/nav') %>
-<div class="container">
-    <h1>All the customers</h1>
-    <div>
-        <%#= all_customers %>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Customers</title>
+</head>
+
+<body>
+    <%- include ('./partials/nav') %>
+    <div class="container">
+        <h1>All the customers</h1>
+        <div>
+            <%#= all_customers %>
+        </div>
+        <div>
+            <ul>
+                <% all_customers.forEach(function(value) { %>
+                <li class="customers-persons-li" onclick="deleteme(this)">Name: <%= value.name %>, Active:
+                    <%= value.is_active %>, Id:
+                    <%= value.id %> , Url:
+                    <%= value.url %>
+                </li>
+                <% }) %>
+            </ul>
+        </div>
     </div>
-    <div>
-        <ul>
-            <% all_customers.forEach(function(value) { %>
-            <li class="customers-persons-li">Name: <%= value.name %>, Active: <%= value.is_active %>, Id:
-                <%= value.id %> , Url:
-                <%= value.url %>
-            </li>
-            <% }) %>
-        </ul>
-    </div>
-</div>
+
+</body>
+
+</html>

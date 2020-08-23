@@ -92,4 +92,5 @@ input[type=submit]:hover {
 .customers-persons-li {
     border-bottom: 1px solid white;
     color: #4e4e4eeb;
+    font-size: 20px;
 }
